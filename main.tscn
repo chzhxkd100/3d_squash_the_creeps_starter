@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://clx5r0ig2ltr4" path="res://Main.cs" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://ceuu150fmggvr" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://defdm2qdva75q" path="res://mob.tscn" id="2_1bvp3"]
+[ext_resource type="FontFile" uid="uid://cyxhh7ddkn62q" path="res://fonts/Montserrat-Medium.ttf" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://b6yqacnxiq0jo" path="res://ScoreLabel.cs" id="5_7mycd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
 size = Vector3(60, 2, 60)
@@ -23,6 +25,10 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="Theme" id="Theme_272bh"]
+default_font = ExtResource("4_lquwl")
+default_font_size = 22
 
 [node name="Main" type="Node" unique_id=1280821579]
 script = ExtResource("1_h2yge")
@@ -78,11 +84,28 @@ curve = SubResource("Curve3D_272bh")
 debug_custom_color = Color(0, 0, 1, 1)
 
 [node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath" unique_id=87011692]
-transform = Transform3D(0.054862168, 0, -0.9984934, 0, 1, 0, 0.9984934, 0, 0.054862168, -0.07536507, 0, -0.05047798)
+transform = Transform3D(0.05486216, 0, -0.99849325, 0, 1, 0, 0.99849325, 0, 0.05486216, -0.07536507, 0, -0.05047798)
 
 [node name="MobTimer" type="Timer" parent="." unique_id=1680716002]
 wait_time = 0.5
 autostart = true
+
+[node name="UserInterface" type="Control" parent="." unique_id=1638383245]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_272bh")
+
+[node name="ScoreLabel" type="Label" parent="UserInterface" unique_id=1854894597]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 34.0
+offset_right = 111.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Score: 0"
+script = ExtResource("5_7mycd")
 
 [connection signal="Hit" from="Player" to="." method="OnPlayerHit"]
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
