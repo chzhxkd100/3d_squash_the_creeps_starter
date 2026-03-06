@@ -84,7 +84,7 @@ curve = SubResource("Curve3D_272bh")
 debug_custom_color = Color(0, 0, 1, 1)
 
 [node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath" unique_id=87011692]
-transform = Transform3D(0.05486216, 0, -0.99849325, 0, 1, 0, 0.99849325, 0, 0.05486216, -0.07536507, 0, -0.05047798)
+transform = Transform3D(0.054862153, 0, -0.9984931, 0, 1, 0, 0.9984931, 0, 0.054862153, -0.07536507, 0, -0.05047798)
 
 [node name="MobTimer" type="Timer" parent="." unique_id=1680716002]
 wait_time = 0.5
@@ -92,9 +92,11 @@ autostart = true
 
 [node name="UserInterface" type="Control" parent="." unique_id=1638383245]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_272bh")
 
 [node name="ScoreLabel" type="Label" parent="UserInterface" unique_id=1854894597]
@@ -106,6 +108,30 @@ offset_bottom = 57.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Score: 0"
 script = ExtResource("5_7mycd")
+
+[node name="Retry" type="ColorRect" parent="UserInterface" unique_id=900079313]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Label" type="Label" parent="UserInterface/Retry" unique_id=110701600]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.5
+offset_top = -14.0
+offset_right = 107.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Enter to retry"
 
 [connection signal="Hit" from="Player" to="." method="OnPlayerHit"]
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]

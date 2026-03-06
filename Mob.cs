@@ -29,6 +29,8 @@ public partial class Mob : CharacterBody3D
 
 		Velocity = Velocity.Rotated(Vector3.Up, Rotation.Y);
 
+		GetNode<AnimationPlayer>("AnimationPlayer").SpeedScale = randomSpeed / MinSpeed;
+
 	}
 
 	private void OnVisibilityNotifierScreenExited()
